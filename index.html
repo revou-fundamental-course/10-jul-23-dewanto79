@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" href="./assets/logo.png">
   <title>Kalkulator BMI</title>
 </head>
 
@@ -37,25 +38,42 @@
         </div>
       </div>
       <div class="usia">
-        <p>Berapa usia anda? (tahun)</p>
-        <input type="number"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-          id="usia" name="usia" placeholder="20" min="2" max="120" value="25" required>
+        <p>Berapa usia kamu? (tahun)</p>
+        <div class="input-number">
+          <input type="number"
+            onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+            onkeydown="hideError(0)" id="usia" name="usia" placeholder="20" min="0" value="25">
+          <div class="error">
+            <p id="usiaNull" class="">Usia harus diisi</p>
+            <p id="usiaRange">Usia harus diantara 2 dan 120</p>
+          </div>
+        </div>
       </div>
       <div class="berat">
-        <p>Berapa berat anda? (kg)</p>
-        <input type="number"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-          id="berat" name="berat" placeholder="60" min="5" max="250" value="55" required>
+        <p>Berapa berat kamu? (kg)</p>
+        <div class="input-number">
+          <input type="number"
+            onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+            id="berat" name="berat" placeholder="60" value="55">
+          <div class="error">
+            <p id="beratNull">Berat badan harus diisi</p>
+            <p id="beratRange">Berat badan harus diantara 3 dan 600</p>
+          </div>
+        </div>
       </div>
       <div class="tinggi">
-        <p>Berapa tinggi anda? (cm)</p>
-        <input type="number"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-          id="tinggi" name="tinggi" placeholder="170" min="30" max="500" value="172" required>
+        <p>Berapa tinggi kamu? (cm)</p>
+        <div class="input-number">
+          <input type="number" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 &&
+        event.charCode <= 57))" id="tinggi" name="tinggi" placeholder="170" value="172">
+          <div class="error">
+            <p id="tinggiNull">Tinggi badan harus diisi</p>
+            <p id="tinggiRange">Tinggi badan harus diantara 40 dan 300</p>
+          </div>
+        </div>
       </div>
 
-      <input type="submit" class="submit" value="Hitung BMI" >
+      <input type="submit" class="submit" value="Hitung BMI">
       <input type="reset" class="reset" value="Reset">
     </form>
     <div id="result" class="result">
@@ -157,11 +175,7 @@
         </p>
       </div>
     </div>
-  </div>
-  <div>
-    <p>
-
-  </div>
+  </div>s
   <footer>
     <div class="social-media">
       <p>Join me on social media</p>
