@@ -21,7 +21,6 @@ function submitForm(event) {
       break;
     }
   }
-  console.log([selectedGender, usia.value, berat.value, tinggi.value]);
   if (validated(usia.value, berat.value, tinggi.value)) {
     const tinggiMeter = tinggi.value / 100;
     const bmi = parseFloat(berat.value / tinggiMeter ** 2).toFixed(1);
@@ -97,11 +96,6 @@ function validated(age, weight, height) {
   }
   return condition;
 }
-function hideError(num) {
-  // const errorClass = document.getElementsByClassName('error');
-  // console.log(errorClass);
-  // errorClass[num].classList.add('hide');
-}
 function kategori(bmi) {
   if (bmi < 18.5) {
     kategoriBMI.style.color = 'blue';
@@ -140,7 +134,6 @@ const question = document.getElementsByClassName('info-question');
 function rotate(num) {
   arrowClass[num].classList.toggle('rotates');
   let content = question[num].nextElementSibling;
-  console.log(content);
   if (content.style.maxHeight) {
     content.style.maxHeight = null;
   } else {
