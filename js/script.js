@@ -21,16 +21,86 @@ function submitForm(event) {
       break;
     }
   }
-  const tinggiMeter = tinggi.value / 100;
-  const bmi = parseFloat(berat.value / tinggiMeter ** 2).toFixed(1);
-  answer[0].innerHTML = selectedGender;
-  answer[1].innerHTML = usia.value;
-  answer[2].innerHTML = berat.value;
-  answer[3].innerHTML = tinggi.value;
-  bmiResult.innerHTML = bmi;
-  kategoriBMI.innerHTML = kategori(bmi);
-  deskripsiBMI.innerHTML = deskripsi(bmi);
-  console.log([selectedGender, usia.value, berat.value, tinggi.value])
+  console.log([selectedGender, usia.value, berat.value, tinggi.value]);
+  if (validated(usia.value, berat.value, tinggi.value)) {
+    const tinggiMeter = tinggi.value / 100;
+    const bmi = parseFloat(berat.value / tinggiMeter ** 2).toFixed(1);
+    answer[0].innerHTML = selectedGender;
+    answer[1].innerHTML = usia.value;
+    answer[2].innerHTML = berat.value;
+    answer[3].innerHTML = tinggi.value;
+    bmiResult.innerHTML = bmi;
+    kategoriBMI.innerHTML = kategori(bmi);
+    deskripsiBMI.innerHTML = deskripsi(bmi);
+  };
+}
+
+function validated(age, weight, height) {
+  const usiaNull = document.getElementById('usiaNull');
+  const usiaRange = document.getElementById('usiaRange');
+  const beratNull = document.getElementById('beratNull');
+  const beratRange = document.getElementById('beratRange');
+  const tinggiNull = document.getElementById('tinggiNull');
+  const tinggiRange = document.getElementById('tinggiRange');
+ 
+  let condition = true;
+  //age validation
+  switch (true) {
+    case (age == ''):
+      usiaNull.style.display = 'block';
+      usiaRange.style.display = 'none';
+      condition = false;
+      break;
+    case (age < 2 || age > 120):
+      usiaNull.style.display = 'none';
+      usiaRange.style.display = 'block';
+      condition = false;
+      break;
+    default:
+      usiaNull.style.display = 'none';
+      usiaRange.style.display = 'none';
+      break;
+  }
+  //weight validation
+  switch (true) {
+    case (weight == ''):
+      beratNull.style.display = 'block';
+      beratRange.style.display = 'none';
+      condition = false;
+      break;
+    case (weight < 3 || weight > 600):
+      beratNull.style.display = 'none';
+      beratRange.style.display = 'block';
+      condition = false;
+      break;
+    default:
+      beratNull.style.display = 'none';
+      beratRange.style.display = 'none';
+      break;
+  }
+  //height validation
+  switch (true) {
+    case (height == ''):
+      tinggiNull.style.display = 'block';
+      tinggiRange.style.display = 'none';
+      condition = false;
+      break;
+    case (height < 40 || height > 300):
+      tinggiNull.style.display = 'none';
+      tinggiRange.style.display = 'block';
+      condition = false;
+      break;
+    default:
+      tinggiNull.style.display = 'none';
+      tinggiRange.style.display = 'none';
+      break;
+  }
+  return condition;
+}
+function hideError(num) {
+  // const errorClass = document.getElementsByClassName('error');
+  // console.log(errorClass);
+  // errorClass[num].classList.add('hide');
 }
 function kategori(bmi) {
   if (bmi < 18.5) {
@@ -66,8 +136,16 @@ function deskripsi(bmi) {
 }
 const message = document.getElementsByClassName('info-answer');
 const arrowClass = document.getElementsByClassName('arrow');
-function rotate(num){
+const question = document.getElementsByClassName('info-question');
+function rotate(num) {
   arrowClass[num].classList.toggle('rotates');
-  message[num].classList.toggle('show');
+  let content = question[num].nextElementSibling;
+  console.log(content);
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+
+  }
 }
 

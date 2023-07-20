@@ -88,15 +88,16 @@ input[type=radio]:checked+label {
   cursor: pointer;
   margin-right: 1rem;
 }
-
+.input-number{
+  margin: 0.5rem 0 1rem;
+}
 input[type=number] {
   padding: 0.5rem;
   border: none;
   border-radius: 0.25rem;
-  margin: 0.5rem 0 1rem;
   width: 95%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  /* hide arrow in input number */
+  /* hide arrow in input number for mozilla browser*/
   -moz-appearance: textfield;
 }
 
@@ -107,6 +108,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.error{
+  margin-top: 8px;
+  color: red;
+  font-size: 12px;
+}
+#usiaNull, #usiaRange, #beratNull, #beratRange, #tinggiNull, #tinggiRange{
+  display: none;
+} 
 .submit,
 .reset {
   border: 0;
@@ -164,13 +173,15 @@ input::-webkit-inner-spin-button {
 }
 
 .info-question {
-  margin: 0.75rem 0;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: solid 1px rgb(211, 211, 211);
   cursor: pointer;
+}
+.info-question:hover{
+  background-color: #eeecd2;
 }
 
 .arrow {
@@ -183,14 +194,20 @@ input::-webkit-inner-spin-button {
 }
 
 .info-answer {
-  margin: 1rem;
+  margin: 4px;
+  padding: 0 1.5rem;
   text-align: justify;
-  transition: all 0.4s ease-in-out;
-  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }
 
 .show {
   display: block;
+}
+
+.hide {
+  display: none;
 }
 
 footer {
