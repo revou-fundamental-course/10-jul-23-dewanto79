@@ -1,9 +1,24 @@
+//define variabel gender, usia, berat dan tinggi
 const gender = document.getElementsByName("gender");
 const usia = document.getElementById("usia");
 const berat = document.getElementById("berat");
 const tinggi = document.getElementById("tinggi");
+
+//define variable untuk validasi usia, berat dan tinggi
+const usiaNull = document.getElementById('usiaNull');
+const usiaRange = document.getElementById('usiaRange');
+const beratNull = document.getElementById('beratNull');
+const beratRange = document.getElementById('beratRange');
+const tinggiNull = document.getElementById('tinggiNull');
+const tinggiRange = document.getElementById('tinggiRange');
+
+//define variable jawaban dari form
 const answer = document.getElementsByName("answer");
+
+//define variabel hasil dari kalkulasi bmi
 const bmiResult = document.getElementById("bmi-result");
+
+//define variabel kategori dan deskripsi bmi
 const kategoriBMI = document.getElementById("kategori-bmi");
 const deskripsiBMI = document.getElementById("deskripsi-bmi");
 const deskripsiArray = [
@@ -12,8 +27,15 @@ const deskripsiArray = [
   'Jaga pola makan dengan mengurangi makanan tinggi gula ataupun lemak, serta tingkatan aktivitas dan olahraga secara teratur'
 ]
 
+//define variabel untuk informasi tambahan dan arrownya
+const arrowClass = document.getElementsByClassName('arrow');
+const question = document.getElementsByClassName('info-question');
+
+//fungsi submit form
 function submitForm(event) {
   event.preventDefault();
+
+  //algoritma untuk mendapatkan gender yang di input
   let selectedGender;
   for (let i = 0; i < gender.length; i++) {
     if (gender[i].checked) {
@@ -21,33 +43,39 @@ function submitForm(event) {
       break;
     }
   }
+  //lakukan validasi sebelum kalkulasi
   if (validated(usia.value, berat.value, tinggi.value)) {
     const tinggiMeter = tinggi.value / 100;
     const bmi = parseFloat(berat.value / tinggiMeter ** 2).toFixed(1);
+
+    //memberikan isi data yang di input kedalam field yang telah ditentukan
     answer[0].innerHTML = selectedGender;
     answer[1].innerHTML = usia.value;
     answer[2].innerHTML = berat.value;
     answer[3].innerHTML = tinggi.value;
+
+    //memberikan hasil kalkulasi kedalam field yang telah ditentukan
     bmiResult.innerHTML = bmi;
     kategoriBMI.innerHTML = kategori(bmi);
     deskripsiBMI.innerHTML = deskripsi(bmi);
   };
 }
 
-function validated(age, weight, height) {
-  const usiaNull = document.getElementById('usiaNull');
-  const usiaRange = document.getElementById('usiaRange');
-  const beratNull = document.getElementById('beratNull');
-  const beratRange = document.getElementById('beratRange');
-  const tinggiNull = document.getElementById('tinggiNull');
-  const tinggiRange = document.getElementById('tinggiRange');
- 
+// validasi usia, berat dan tinggi
+function validated(age, weight, height) { 
+  //return default jika validasi berhasil
   let condition = true;
+  
   //age validation
   switch (true) {
     case (age == ''):
+      //display error ketika terjadi error
       usiaNull.style.display = 'block';
+
+      //sembunyikan error yang lain ketika error ini terjadi
       usiaRange.style.display = 'none';
+
+      // return menjadi false karena terjadi error
       condition = false;
       break;
     case (age < 2 || age > 120):
@@ -96,6 +124,8 @@ function validated(age, weight, height) {
   }
   return condition;
 }
+
+// fungsi untuk mengkategorikan bmi
 function kategori(bmi) {
   if (bmi < 18.5) {
     kategoriBMI.style.color = 'blue';
@@ -114,6 +144,8 @@ function kategori(bmi) {
     return "Obesitas";
   }
 }
+
+// fungsi untuk memberikan deskripsi yang sesuai terhadap hasil kalkulasi bmi
 function deskripsi(bmi) {
   if (bmi < 18.5) {
     return deskripsiArray[0];
@@ -128,9 +160,8 @@ function deskripsi(bmi) {
     return deskripsiArray[2];
   }
 }
-const message = document.getElementsByClassName('info-answer');
-const arrowClass = document.getElementsByClassName('arrow');
-const question = document.getElementsByClassName('info-question');
+
+// fungsi merotasi anak panah dan melakukan collapse
 function rotate(num) {
   arrowClass[num].classList.toggle('rotates');
   let content = question[num].nextElementSibling;
@@ -138,7 +169,6 @@ function rotate(num) {
     content.style.maxHeight = null;
   } else {
     content.style.maxHeight = content.scrollHeight + "px";
-
   }
 }
 

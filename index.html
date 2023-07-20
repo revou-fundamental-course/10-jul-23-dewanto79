@@ -23,9 +23,11 @@
       tidak. Kalkulator akan memberi Anda gambaran tentang perbandingan berat dengan tinggi badan Anda. Yuk, hitung
       sekarang di kalkulator BMI!</p>
     <img src="./assets/bmi.png" alt="Kalkulator BMI" class="icon">
-
   </header>
+
+  <!-- Container for calculator BMI -->
   <div class="container">
+    <!-- Container for BMI form -->
     <form action="index.html#result" class="question" onsubmit="submitForm(event)">
       <div class="gender">
         <p>Apa jenis kelamin Anda?</p>
@@ -76,6 +78,8 @@
       <input type="submit" class="submit" value="Hitung BMI">
       <input type="reset" class="reset" value="Reset">
     </form>
+
+    <!-- Container for result -->
     <div id="result" class="result">
       <h2>Hasil Perhitungan BMI</h2>
       <p><span name="answer">Laki - laki</span> usia <span name="answer">25</span> tahun</p>
@@ -92,6 +96,8 @@
         Ahli Gizi</a>
     </div>
   </div>
+
+  <!-- Container for informasi-->
   <div class="info">
     <div id="informasi-tambahan">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -101,6 +107,8 @@
       </svg>
       <p>Informasi tambahan</p>
     </div>
+
+    <!-- Pertanyaan pertama -->
     <div>
       <div onclick="rotate(0)" class="info-question">
         <p> Apa itu BMI (Body Mass Index)?</p>
@@ -122,6 +130,7 @@
       </div>
     </div>
 
+    <!-- Pertanyaan kedua -->
     <div>
       <div onclick="rotate(1)" class="info-question">
         <p> Bagaimana BMI dihitung?</p>
@@ -150,6 +159,7 @@
       </div>
     </div>
 
+    <!-- Pertanyaan ketiga -->
     <div>
       <div onclick="rotate(2)" class="info-question">
         <p> Apa manfaat dari menghitung BMI?</p>
@@ -176,6 +186,7 @@
       </div>
     </div>
   </div>
+
   <footer>
     <div class="social-media">
       <p>Join me on social media</p>
@@ -195,6 +206,7 @@
     </div>
   </footer>
 </body>
+
 <script src="./js/script.js"></script>
 
 </html>

@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
@@ -15,7 +17,6 @@ html {
 
 body {
   background: #F4F2DE;
-  /* padding: 1rem; */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -23,13 +24,6 @@ header {
   background-color: #7ab1a5;
   padding: 4rem 2rem;
   position: relative;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin: 0;
 }
 
 .description {
